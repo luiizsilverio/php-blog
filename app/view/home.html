@@ -1,0 +1,8 @@
+<h1>Publicações</h1>
+
+{% for post in postagens %}
+  <article>
+    <a href="#"><h2>{{ post.titulo }}</h2></a>
+    <p>{{ post.conteudo }}</p>
+  </article>
+{% endfor %}

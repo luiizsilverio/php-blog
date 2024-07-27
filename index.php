@@ -1,6 +1,7 @@
 <?php 
 
   require_once "app/core/core.php";
+  require_once 'vendor/autoload.php';
 
   $template = file_get_contents("app/template/estrutura.html");
 
@@ -10,8 +11,8 @@
   // ob_dump($saida);
 
   $core = new Core;
-  $saida = $core->start($_GET['p']);
+  $pagina = $core->start($_GET['p']);
 
-  $template_ok = str_replace("{{root}}", $saida, $template);
+  $saida = str_replace("{{root}}", $pagina, $template);
 
-  echo $template_ok;
+  echo $saida;
