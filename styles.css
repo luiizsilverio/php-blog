@@ -1,3 +1,8 @@
+:root {
+  --COR-AZUL: rgb(74, 74, 220);
+  --COR-CINZA: #333;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,7 +19,11 @@ body, html {
 
 a {
   text-decoration: none;
-  color: #333;
+  color: var(--COR-CINZA);
+}
+
+a:last-child {
+  float: right;
 }
 
 nav a {
@@ -25,7 +34,7 @@ nav a {
 /* a:hover { */
 a:not(.logo):hover {
   text-decoration: underline;
-  color: #333;
+  color: var(--COR-CINZA);
 }
 
 header.topo {
@@ -46,7 +55,8 @@ div.menu {
   background-color: white;
   border-left: 5px solid orange;
   border-right: 5px solid orange;
-  box-shadow: 0px 10px 0px -5px rgba(0,0,0,0.25);
+  /* box-shadow: 0px 8px 0px -5px rgba(0,0,0,0.25); */
+  border-bottom: 5px solid rgba(0,0,0,0.25);
   padding: 20px 24px;
   height: 68px;
 }
@@ -61,33 +71,68 @@ main.corpo {
   width: 1000px;
   min-height: 100%;
   max-width: 90%;
-  margin: 0 auto;border-left: 5px solid orange;
+  margin: 0 auto;
+  border-left: 5px solid orange;
   border-right: 5px solid orange;
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding: 24px;
+  padding: 32px;
   padding-top: 68px;
+}
+
+h1 {
+  font-size: 22px;
+  margin-top: 30px;
+  color: var(--COR-AZUL);
+  text-transform: uppercase;
+  /* letter-spacing: 1px; */
+}
+
+h2 {
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--COR-CINZA);
+}
+
+header h2 {
+  margin-bottom: 10px;
+}
+
+h3, h4 {
+  color: var(--COR-CINZA);
 }
 
 article {
   margin: 20px 0;
 }
 
-h1 {
-  font-size: 22px;
-  margin-top: 30px;
-  color: rgb(86, 86, 255);
-  text-transform: uppercase;
-  /* letter-spacing: 1px; */
-}
-
-h2 {
-  font-size: 22px;
-  line-height: 1.5;
-  color: #333;
-}
-
 article p {
   font-size: 16px;
+}
+
+article small {
+  color: var(--COR-AZUL);
+}
+
+.divider {
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+  padding: 8px 0;
+}
+
+table, th, td {
+  border: 1px solid;
+}
+table {
+  border-collapse: collapse;
+}
+th, td {
+  padding: 12px;
+}
+th {
+  background-color: navy;
+  color: white;
+}
+tr:hover {
+  background-color: #ccc;
 }

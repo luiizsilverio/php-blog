@@ -4,6 +4,7 @@
   require_once 'app/controller/sobre-controller.php';
   require_once 'app/controller/erro-controller.php';
   require_once 'app/controller/post-controller.php';
+  require_once 'app/controller/admin-controller.php';
 
 class Core {
 
@@ -20,6 +21,9 @@ class Core {
         break;
       case 'post':
         $controller = new PostController;
+        break;
+      case 'admin':
+        $controller = new AdminController;
         break;
       default:
         if (empty($pagina)) 

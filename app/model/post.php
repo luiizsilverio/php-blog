@@ -2,6 +2,7 @@
 
   require_once "lib/database/connection.php";
   require_once "app/model/comment.php";
+  // require_once "lib/util.php";
 
   class Post {
 
@@ -14,6 +15,7 @@
 
       $result = array();
       while ($row = $query->fetchObject('Post')) {  // fetchObject busca o próximo registro e converte em objeto
+        $row->comentarios = Comment::getTotal($row->id);
         $result[] = $row;
       }
 

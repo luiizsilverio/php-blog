@@ -8,3 +8,24 @@
   </article>
 </section>
 
+<div class="divider"></div>
+
+<section>
+  <header>
+    <h3>Comentários</h3>
+  </header>
+  <br>
+    {% if post.comentarios|length > 0 %}
+        {% for comentario in post.comentarios %}
+          <section>
+            <h4>{{ comentario.nome }}</h4>
+            <p>{{ comentario.mensagem }}</p>
+          </section>
+          <br>
+        {% endfor %}
+    {% else %}
+        <section>
+          <p>Nenhum comentário para este artigo.</p>
+        </section>
+    {% endif %}
+</section>

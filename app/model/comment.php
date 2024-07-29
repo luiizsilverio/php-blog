@@ -20,6 +20,18 @@
       return $result;
     }
 
+    public static function getTotal($idPost) {
+      $conn = Connection::getConn();
+
+      $sql = "SELECT COUNT(*) AS qtd FROM comentario WHERE id_postagem = :id";
+      $query = $conn->prepare($sql);
+      $query->bindValue(':id', $idPost, PDO::PARAM_INT);
+      $query->execute();
+
+      $result = $query->fetchObject('Comment');
+      return $result->qtd;
+    }
+
     public static function getById($id) {
       $conn = Connection::getConn();
 
