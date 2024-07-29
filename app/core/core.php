@@ -3,11 +3,13 @@
   require_once 'app/controller/home-controller.php';
   require_once 'app/controller/sobre-controller.php';
   require_once 'app/controller/erro-controller.php';
+  require_once 'app/controller/post-controller.php';
 
 class Core {
 
   public function start($urlGet) {
     $pagina = strtolower($urlGet);
+
 
     switch ($pagina) {
       case 'home': 
@@ -15,6 +17,9 @@ class Core {
         break;
       case 'sobre':
         $controller = new SobreController;
+        break;
+      case 'post':
+        $controller = new PostController;
         break;
       default:
         if (empty($pagina)) 

@@ -1,4 +1,7 @@
-<?php include "lib/database/connection.php";
+<?php 
+
+  require_once "lib/database/connection.php";
+  require_once "app/model/comment.php";
 
   class Post {
 
@@ -16,6 +19,22 @@
 
       if (!$result) {
         throw new Exception("Não foi encontrada nenhuma publicação");
+      }
+      return $result;
+    }
+
+    public static function getById($idPost) {
+      $conn = Connection::getConn();
+
+      $sql = "SELECT * FROM postagem WHERE id = :id";
+      $query = $conn->prepare($sql);
+      $query->bindValue(':id', $idPost, PDO::PARAM_INT);
+      $query->execute();
+
+      $result = $query->fetchObject('Post');
+
+      if ($result) {
+        $result->comentarios = Comment::getAll($idPost);
       }
       return $result;
     }
