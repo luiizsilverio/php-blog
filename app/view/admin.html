@@ -1,6 +1,6 @@
 <h1>Gerenciar Publicações</h1>
 <br>
-<a href="#" style="color: blue;">Criar Publicação</a>
+<a href="index.php?p=admin&method=create" style="color: blue;">Criar Publicação</a>
 <br>
 <br>
 <table border="2">
@@ -10,10 +10,16 @@
     <th>Editar</th>
     <th>Excluir</th>
   </tr>
-  <tr>
-    <td>a</td>
-    <td>a</td>
-    <td>a</td>
-    <td>a</td>
-  </tr>
+  
+  {% for post in postagens %}
+    <tr>
+      <td>{{post.id}}</td>
+      <td>{{post.titulo}}</td>
+      <td>a</td>
+      <td>b</td>
+    </tr>
+  {% else %}
+    <td colspan="4">Nenhuma publicação cadastrada</td>
+  {% endfor %}
+
 </table>

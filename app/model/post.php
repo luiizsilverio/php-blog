@@ -7,37 +7,64 @@
   class Post {
 
     public static function getAll() {
-      $conn = Connection::getConn();
+      try {
+        $conn = Connection::getConn();
+        $sql = "SELECT * FROM postagem ORDER BY id DESC";
+        $query = $conn->prepare($sql);
+        $query->execute();
 
-      $sql = "SELECT * FROM postagem ORDER BY id DESC";
-      $query = $conn->prepare($sql);
-      $query->execute();
+        $result = array();
+        while ($row = $query->fetchObject('Post')) {  // fetchObject busca o próximo registro e converte em objeto
+          $row->comentarios = Comment::getTotal($row->id);
+          $result[] = $row;
+        }
 
-      $result = array();
-      while ($row = $query->fetchObject('Post')) {  // fetchObject busca o próximo registro e converte em objeto
-        $row->comentarios = Comment::getTotal($row->id);
-        $result[] = $row;
+        if (!$result) {
+          throw new Exception("Não foi encontrada nenhuma publicação");
+        }
+        return $result;
       }
-
-      if (!$result) {
-        throw new Exception("Não foi encontrada nenhuma publicação");
+      catch (Exception $e) {
+        throw new Exception("Falha ao buscar as publicações");
       }
-      return $result;
     }
 
     public static function getById($idPost) {
-      $conn = Connection::getConn();
+      try {
+        $conn = Connection::getConn();
+        $sql = "SELECT * FROM postagem WHERE id = :id";
+        $query = $conn->prepare($sql);
+        $query->bindValue(':id', $idPost, PDO::PARAM_INT);
+        $query->execute();
 
-      $sql = "SELECT * FROM postagem WHERE id = :id";
-      $query = $conn->prepare($sql);
-      $query->bindValue(':id', $idPost, PDO::PARAM_INT);
-      $query->execute();
+        $result = $query->fetchObject('Post');
 
-      $result = $query->fetchObject('Post');
-
-      if ($result) {
-        $result->comentarios = Comment::getAll($idPost);
+        if ($result) {
+          $result->comentarios = Comment::getAll($idPost);
+        }
+        return $result;
       }
-      return $result;
+      catch (Exception $e) {
+        throw new Exception("Falha ao buscar a publicação");
+      }
+    }
+
+    public static function insert($data) {
+      if (empty($data['titulo']) || empty($data['conteudo'])) {
+        throw new Exception("Preencha todos os campos");
+        return false;
+      }
+      
+      $conn = Connection::getConn();
+      $sql = "INSERT INTO postagem (titulo, conteudo) VALUES (:tit, :cont)";
+      $query = $conn->prepare($sql);
+      $query->bindValue(':tit',  $data['titulo']);
+      $query->bindValue(':cont', $data['conteudo']);
+      $result = $query->execute();
+
+      if ($result == 0) {
+        throw new Exception();
+      }
+      return $result;      
     }
   }

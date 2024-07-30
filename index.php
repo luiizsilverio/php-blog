@@ -11,7 +11,7 @@
   // ob_dump($saida);
 
   $core = new Core;
-  $pagina = $core->start($_GET['p']);
+  $pagina = $core->start($_GET['p'], $_GET['method']);
 
   $saida = str_replace("{{root}}", $pagina, $template);
 

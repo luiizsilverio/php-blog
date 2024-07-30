@@ -8,9 +8,9 @@
 
 class Core {
 
-  public function start($urlGet) {
-    $pagina = strtolower($urlGet);
-
+  public function start($urlPage, $urlMethod) {
+    $pagina = empty($urlPage) ? 'home' : $urlPage;
+    $acao = empty($urlMethod) ? 'index' : $urlMethod;
 
     switch ($pagina) {
       case 'home': 
@@ -26,14 +26,11 @@ class Core {
         $controller = new AdminController;
         break;
       default:
-        if (empty($pagina)) 
-          $controller = new HomeController;
-        else 
-          $controller = new ErroController;
+        $controller = new ErroController;
     }
 
-    return $controller->index();
-    // call_user_func_array(array($controller, 'index'), array());
-  }
+    // return $controller->index();
+    return call_user_func_array(array($controller, $acao), array());
+  }  
   
 }

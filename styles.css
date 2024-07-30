@@ -1,6 +1,7 @@
 :root {
   --COR-AZUL: rgb(74, 74, 220);
   --COR-CINZA: #333;
+  --COR-CINZA-CLARO: rgba(0,0,0,0.25);
 }
 
 * {
@@ -13,7 +14,9 @@
 
 body, html {
   background-color: darkblue;
-  background-image: linear-gradient(to top, rgb(0, 0, 70), darkblue, darkblue);
+  background-image: linear-gradient(to bottom, rgb(0, 0, 70), darkblue, darkblue);
+  background-repeat: no-repeat;
+  color: white;
   height: 100%;
 }
 
@@ -55,8 +58,8 @@ div.menu {
   background-color: white;
   border-left: 5px solid orange;
   border-right: 5px solid orange;
-  /* box-shadow: 0px 8px 0px -5px rgba(0,0,0,0.25); */
-  border-bottom: 5px solid rgba(0,0,0,0.25);
+  /* box-shadow: 0px 8px 0px -5px var(--COR-CINZA-CLARO); */
+  border-bottom: 5px solid var(--COR-CINZA-CLARO);
   padding: 20px 24px;
   height: 68px;
 }
@@ -66,10 +69,7 @@ div.menu {
 }
 
 main.corpo {
-  display: flex;
-  flex: 1;
   width: 1000px;
-  min-height: 100%;
   max-width: 90%;
   margin: 0 auto;
   border-left: 5px solid orange;
@@ -77,6 +77,7 @@ main.corpo {
   display: flex;
   flex-direction: column;
   background-color: white;
+  color: var(--COR-CINZA);
   padding: 32px;
   padding-top: 68px;
 }
@@ -86,7 +87,6 @@ h1 {
   margin-top: 30px;
   color: var(--COR-AZUL);
   text-transform: uppercase;
-  /* letter-spacing: 1px; */
 }
 
 h2 {
@@ -116,7 +116,7 @@ article small {
 }
 
 .divider {
-  border-top: 1px solid rgba(0, 0, 0, 0.25);
+  border-top: 1px solid var(--COR-CINZA-CLARO);
   padding: 8px 0;
 }
 
@@ -134,5 +134,48 @@ th {
   color: white;
 }
 tr:hover {
-  background-color: #ccc;
+  background-color: #eee;
+}
+
+form {
+  display: block;
+
+}
+
+.form-control {
+  margin: 20px 0;
+}
+
+label {
+  display: block;
+}
+
+input, textarea {
+  border: 1px solid var(--COR-CINZA-CLARO); 
+  padding: 8px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-width: 2px;
+}
+
+input[type="submit"] {
+  max-width: 140px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: var(--COR-AZUL);
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  filter: brightness(1.2);
 }
