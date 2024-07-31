@@ -3,7 +3,7 @@
 {% for post in postagens %}
   <article>
     <a href="index.php?p=post&id={{ post.id }}"><h2>{{ post.titulo }}</h2></a>
-    <p>{{ post.conteudo }}</p>
+    <p class="previa">{{ post.conteudo }}</p>
     {% if post.comentarios > 0 %}
       <small>{{ post.comentarios }} comentários</small>
     {% endif %}
