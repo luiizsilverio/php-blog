@@ -2,7 +2,7 @@
 
   require_once "lib/database/connection.php";
   require_once "app/model/comment.php";
-  // require_once "lib/util.php";
+  require_once "lib/util.php";
 
   class Post {
 
@@ -84,6 +84,24 @@
         throw new Exception();
       }
       return $result;      
+    }
+
+    public static function delete($idPost) {
+      try {
+        $conn = Connection::getConn();
+        $sql = "DELETE FROM postagem WHERE id = :id";
+        $query = $conn->prepare($sql);
+        $query->bindValue(':id', $idPost, PDO::PARAM_INT);
+        $result = $query->execute();
+
+        if ($result == 0) {
+          throw new Exception();
+        }
+        return $result; 
+      }
+      catch (Exception $e) {
+        throw new Exception();
+      }
     }
 
   }

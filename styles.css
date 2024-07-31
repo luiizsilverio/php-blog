@@ -172,6 +172,8 @@ form {
 
 label {
   display: block;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 input, textarea {
@@ -191,7 +193,7 @@ input:focus, textarea:focus {
 }
 
 input[type="submit"] {
-  max-width: 140px;
+  max-width: 180px;
   font-weight: bold;
   text-transform: uppercase;
   background-color: var(--COR-AZUL);
@@ -202,4 +204,8 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   filter: brightness(1.2);
+}
+
+ul {
+  margin-left: 18px;
 }

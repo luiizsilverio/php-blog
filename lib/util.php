@@ -7,3 +7,7 @@
 	function alert($msg) {
 		echo '<script>alert("' . $msg . '");</script>';
 	}
+
+	function redirect($url) {
+		echo '<script>location.href="' . $url . '";</script>';
+	}

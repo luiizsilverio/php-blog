@@ -3,13 +3,13 @@
 <form action="index.php?p=admin&method=update" method="post">
   <div class="form-control">
     <label for="titulo">Título</label>
-    <input type="text" name="titulo" id="titulo" value="{{postagem.titulo}}">
+    <input type="text" name="titulo" id="titulo" value="{{ postagem.titulo }}">
   </div>
   <div class="form-control">
     <label for="conteudo">Conteúdo</label>
-    <textarea name="conteudo" id="conteudo" rows="10">{{postagem.conteudo}}</textarea>
+    <textarea name="conteudo" id="conteudo" rows="10">{{ postagem.conteudo }}</textarea>
   </div>
-  <input type="hidden" name="id" value="{{postagem.id}}">
+  <input type="hidden" name="id" value="{{ postagem.id }}">
   <input type="submit" value="Confirmar">
 
 </form>

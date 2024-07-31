@@ -37,7 +37,9 @@
         return $saida;
       }
       catch (Exception $e) {
-        return "<h1 style='color: red'>Erro ao carregar formulário. {$e->getMessage()}</h1>";
+        // return "<h1 style='color: red'>Erro ao carregar formulário. {$e->getMessage()}</h1>";
+        alert("Erro ao carregar formulário! " . $e->getMessage());
+        redirect("index.php?p=admin&method=index");
       }  
     }
 
@@ -46,12 +48,12 @@
         Post::insert($_POST);
 
         alert('Publicação inserida com sucesso');
-        echo '<script>location.href="index.php?p=admin&method=index";</script>';
+        redirect("index.php?p=admin&method=index");
 
       } catch (Exception $e) {
         // return "<h1 style='color: red'>{$e->getMessage()}</h1>";
-        alert("Falha ao inserir publicação!<br>" . $e->getMessage());
-        echo '<script>location.href="index.php?p=admin&method=create"</script>';
+        alert("Falha ao inserir publicação! " . $e->getMessage());
+        redirect("index.php?p=admin&method=create");
       }
     }
 
@@ -78,7 +80,7 @@
       }
       catch (Exception $e) {
         alert("Falha ao alterar publicação! " . $e->getMessage());
-        echo '<script>location.href="index.php?p=admin&method=index"</script>';
+        redirect("index.php?p=admin&method=index");
       }  
     }
 
@@ -87,12 +89,28 @@
         Post::update($_POST);
 
         alert('Publicação alterada com sucesso');
-        echo '<script>location.href="index.php?p=admin&method=index";</script>';
+        redirect("index.php?p=admin&method=index");
 
       } catch (Exception $e) {
-        alert("Falha ao alterar publicação! " . $e->getMessage());
-        echo '<script>location.href="index.php?p=admin&method=alterar&id=' . $_POST['id'] . '"</script>';
+        alert("Falha ao alterar a publicação! " . $e->getMessage());
+        redirect("index.php?p=admin&method=alterar&id={$_POST['id']}");
       }
     }
 
+    public function excluir() {
+      try {
+        if (!isset($_GET['id']))
+           throw new Exception("Publicação não localizada");
+
+        $id = $_GET['id'];
+        $result = Post::delete($id);
+
+        alert('Publicação excluída com sucesso');
+        redirect("index.php?p=admin&method=index");
+
+      } catch (Exception $e) {
+        alert("Falha ao excluir a publicação! " . $e->getMessage());
+        redirect("index.php?p=admin&method=index");
+      }
+    }
   }

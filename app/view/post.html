@@ -1,3 +1,4 @@
+
 <section>
   <article>
     <header>
@@ -8,19 +9,38 @@
   </article>
 </section>
 
-<div class="divider"></div>
+<br>
+<h3>Comentar</h3>
 
 <section>
-  <header>
+  <form action="index.php?p=post&method=comment&id={{ post.id }}" method="post">
+    <div class="form-control">
+      <label for="nome">Nome</label>
+      <input type="text" name="nome" id="nome">
+    </div>
+    <div class="form-control">
+      <label for="msg">Mensagem</label>
+      <textarea name="msg" id="msg" rows="4"></textarea>
+    </div>
+    <input type="hidden" name="id" value="{{ post.id }}">
+    <input type="submit" value="Enviar Comentário">
+  </form>
+
+  <br>
+  <br>
+  <header id="comentarios">
     <h3>Comentários</h3>
   </header>
   <br>
+
     {% if post.comentarios|length > 0 %}
         {% for comentario in post.comentarios %}
-          <section>
-            <h4>{{ comentario.nome }}</h4>
-            <p>{{ comentario.mensagem }}</p>
-          </section>
+          <ul>
+            <li>
+              <h4>{{ comentario.nome }}</h4>
+              <p>{{ comentario.mensagem }}</p>
+            </li>
+          </ul>
           <br>
         {% endfor %}
     {% else %}

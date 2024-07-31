@@ -1,6 +1,7 @@
 <?php 
 
   require_once "app/model/post.php";
+  require_once "app/model/comment.php";
 
   class PostController {
 
@@ -32,5 +33,27 @@
         return "<h1 style='color: red'>{$e->getMessage()}</h1>";
       }    
     }
+
+    public function comment() {
+      try {
+        if (!isset($_GET['id']))
+           throw new Exception("Publicação não localizada");
+        
+        $id = $_GET['id'];
+        $post = Post::getById($id);
+        
+        if (!$post)
+          throw new Exception("Publicação não localizada");
+        
+        Comment::insert($_POST);
+
+        redirect("index.php?p=post&id={$id}#comentarios");
+      } 
+      catch (Exception $e) {
+        alert("Falha ao incluir comentário! " . $e->getMessage());
+        redirect("index.php?p=post&id={$id}#comentarios");
+      }    
+    }
+
   }
   
