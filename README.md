@@ -19,6 +19,7 @@ Aperfeiçoei o layout (CSS) e fiz algumas melhorias pontuais.
 ## :hammer_and_wrench: Tecnologias
 * __PHP__
 * Acesso ao banco de dados __MySQL__ utilizando __PDO__
+* Template Engine __Twig__
 * HTML, CSS
 <br />
 <br />
