@@ -50,8 +50,48 @@
 
       } catch (Exception $e) {
         // return "<h1 style='color: red'>{$e->getMessage()}</h1>";
-        alert("Falha ao inserir publicação. " . $e->getMessage());
+        alert("Falha ao inserir publicação!<br>" . $e->getMessage());
         echo '<script>location.href="index.php?p=admin&method=create"</script>';
+      }
+    }
+
+    public function alterar() {
+      try {
+        if (!isset($_GET['id']))
+           throw new Exception("Publicação não localizada");
+
+        $id = $_GET['id'];
+        $post = Post::getById($id);
+
+        if (!$post)
+          throw new Exception("Publicação não localizada");
+
+        $loader = new Twig\Loader\FilesystemLoader('app/view'); 
+        $twig = new \Twig\Environment($loader);
+        $template = $twig->load('update.html');
+
+        // Renderiza a página
+        $parametros = array();
+        $parametros['postagem'] = $post;
+        $saida = $template->render($parametros);
+        return $saida;
+      }
+      catch (Exception $e) {
+        alert("Falha ao alterar publicação! " . $e->getMessage());
+        echo '<script>location.href="index.php?p=admin&method=index"</script>';
+      }  
+    }
+
+    public function update() {
+      try {
+        Post::update($_POST);
+
+        alert('Publicação alterada com sucesso');
+        echo '<script>location.href="index.php?p=admin&method=index";</script>';
+
+      } catch (Exception $e) {
+        alert("Falha ao alterar publicação! " . $e->getMessage());
+        echo '<script>location.href="index.php?p=admin&method=alterar&id=' . $_POST['id'] . '"</script>';
       }
     }
 

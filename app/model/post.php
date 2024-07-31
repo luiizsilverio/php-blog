@@ -52,7 +52,6 @@
     public static function insert($data) {
       if (empty($data['titulo']) || empty($data['conteudo'])) {
         throw new Exception("Preencha todos os campos");
-        return false;
       }
       
       $conn = Connection::getConn();
@@ -67,4 +66,24 @@
       }
       return $result;      
     }
+
+    public static function update($data) {
+      if (empty($data['titulo']) || empty($data['conteudo'])) {
+        throw new Exception("Preencha todos os campos");
+      }
+      
+      $conn = Connection::getConn();
+      $sql = "UPDATE postagem set titulo = :tit, conteudo = :cont WHERE id = :id";
+      $query = $conn->prepare($sql);
+      $query->bindValue(':id',   $data['id'], PDO::PARAM_INT);
+      $query->bindValue(':tit',  $data['titulo']);
+      $query->bindValue(':cont', $data['conteudo']);
+      $result = $query->execute();
+
+      if ($result == 0) {
+        throw new Exception();
+      }
+      return $result;      
+    }
+
   }

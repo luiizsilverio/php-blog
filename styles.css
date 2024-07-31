@@ -14,7 +14,7 @@
 
 body, html {
   background-color: darkblue;
-  background-image: linear-gradient(to bottom, rgb(0, 0, 70), darkblue, darkblue);
+  background-image: linear-gradient(to bottom, rgb(0, 0, 70), rgb(0, 0, 70), darkblue);
   background-repeat: no-repeat;
   color: white;
   height: 100%;
@@ -47,9 +47,15 @@ header.topo {
 }
 
 i {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.logo i {
   font-size: 24px;
   color: orangered;
 }
+
 
 div.menu {
   width: 1000px;
@@ -80,6 +86,7 @@ main.corpo {
   color: var(--COR-CINZA);
   padding: 32px;
   padding-top: 68px;
+  min-height: 90%;
 }
 
 h1 {
@@ -123,23 +130,40 @@ article small {
 table, th, td {
   border: 1px solid;
 }
+
 table {
   border-collapse: collapse;
 }
+
 th, td {
   padding: 12px;
 }
+
 th {
   background-color: navy;
   color: white;
+  border: 1px solid navy;
 }
+
 tr:hover {
   background-color: #eee;
 }
 
+td a {
+  width: 100%;
+  text-align: center;
+}
+
+td:last-child a {
+  color: red;
+}
+
+td:nth-last-child(2) a {
+  color: blue;
+}
+
 form {
   display: block;
-
 }
 
 .form-control {
