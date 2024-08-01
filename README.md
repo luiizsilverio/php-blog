@@ -11,7 +11,7 @@
 
 ## Sobre a aplicação
 Site desenvolvido em __PHP__ e banco de dados __MySQL__ durante a playlist de 14 vídeos [Criando Site em PHP + MVC + CRUD](https://www.youtube.com/playlist?list=PLgbAYUnxJ2NE6eM2xkOlpqJ5sl37bLyKx), do canal do _Rafael Capoani_ no __Youtube__.<br />
-Possui CRUD de postagens e comentários e seu diferencial é a estrutura MVC, com models, views e controllers.<br />
+Possui CRUD de postagens e comentários e seu diferencial é o padrão de arquitetura MVC, com models, views e controllers.<br />
 Aperfeiçoei o layout (CSS) e fiz algumas melhorias pontuais.
 <br />
 <br />
